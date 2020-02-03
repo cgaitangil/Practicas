@@ -13,10 +13,12 @@ function peticion(req, res) {
 
   //-- Peticion recibida
   console.log("Peticion recibida!")
+  obj_req = req.headers.accept.slice(0, 4)
+  console.log(obj_req)
 
   //-- Crear mensaje de respuesta
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('Hello World!');
+  res.end('Hello World!!!');
 
 }
 

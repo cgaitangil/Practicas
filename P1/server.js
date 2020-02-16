@@ -1,35 +1,83 @@
 //-- Puerto donde recibir las peticiones
 const PUERTO = 8080;
 
+const fs = require('fs');
 //-- Modulo http
 const http = require('http');
+//-- Módulo URL
+const url = require('url');
 
-console.log("Arrancando servidor...")
+http.createServer( (req, res) => {
+  console.log("--------> Peticion recibida");
+  //console.log(req.headers)
+  console.log(req.headers.accept.slice(0, 4));
+  console.log(req.method);
+  //console.log("  ---> Cabecera de la petición:")
+  //console.log("HOST: " + req.headers.host)
+  //console.log("USER AGENT: " + req.headers['user-agent'])
+  //console.log("ACCEPT:" + req.headers['accept-language'])
+  //onsole.log("ACCEPT-ENCODING:" + req.headers['accept-encoding'])
+  //nsole.log("CONNECTION: " + req.headers.connection)
+  //console.log("UPGRADE-INSECURE-REQUEST: " +
+  //            req.headers['upgrade-insecure-requests'])
 
-//-- Funcion para atender a una Peticion
-//-- req: Mensaje de solicitud
-//-- res: Mensaje de respuesta
-function peticion(req, res) {
+  console.log('Requested URL: ' + req.url);
 
-  //-- Peticion recibida
-  console.log("Peticion recibida!")
-  obj_req = req.headers.accept.slice(0, 4)
-  console.log(obj_req)
+  //-- Analisis de la URL recibida:
+  let q = url.parse(req.url, true);
+
+  console.log("Pathname: " +  q.pathname);
+  console.log("search: " + q.search);
+  console.log("Búsqueda:");
+  let qdata = q.query;
+  console.log(qdata);
+
+  //-- Acceso al objeto
+  console.log("Artículo: " + qdata.articulo)
+  console.log("Color: " + qdata.color)
 
   //-- Crear mensaje de respuesta
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('Hello World!!!');
+  //_- Crear el mensaje de respuesta. Primero la cabecera
+  //-- El código 200 se usa para indicar que todo está ok
+  //-- En el campo Content-Type tenemos que introducir el tipo MIME
+  //-- de lo que devolvemos
 
-}
+  var filename = q.pathname.slice(1)
+  console.log(filename)
+  fs.readFile(filename, 'utf-8', (err, data) => {
 
-//-- Inicializar el servidor
-//-- Cada vez que recibe una petición
-//-- invoca a la funcion peticion para atenderla
-const server = http.createServer(peticion)
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    } else {
+      var req_mime = filename.slice(filename.lastIndexOf(".")+1);
+      console.log(req_mime);
+      if (req_mime == "html") {
+        console.log('html btch');
+        res.writeHead(200, {'Content-Type': "text/html"});
+        res.write(data);
+        res.end();
+      }
+      else if (req_mime == 'png') {
+        console.log('es img btch');
+        res.writeHead(200, {'Content-Type': "image/png"});
+        res.end(data, 'binary');
+      }
+      else if (req_mime == 'jpg') {
+        console.log('es img jpg btch');
+        res.writeHead(200, {'Content-Type': "image/jpg"});
+        res.end(data, 'binary');
+      }
+    }
+  });
 
-//-- Configurar el servidor para escuchar en el
-//-- puerto establecido
-server.listen(PUERTO);
 
-console.log("Servidor LISTO!")
-console.log("Escuchando en puerto: " + PUERTO)
+
+
+
+
+
+}).listen(PUERTO);
+
+console.log("Arrancando servidor...")
+console.log("Puerto: " + PUERTO)

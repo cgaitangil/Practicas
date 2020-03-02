@@ -3,6 +3,7 @@ from django.db import models
 class Producto(models.Model):
     """Modelo de datos de mis productos"""
 
+    # -- django.models.com
     nombre = models.CharField(max_length=50)
     stock = models.IntegerField(default=0)
     precio = models.FloatField()

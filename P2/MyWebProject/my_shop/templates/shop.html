@@ -1,9 +1,15 @@
+
+{% load staticfiles %}
+
+
 <!DOCTYPE html>
 <html>
 
   <head>
-    <link rel='stylesheet' href='shop.css'>
-
+    <meta charset="utf-8">
+    <title>MI TIENDA</title>
+    <script type="text/javascript" src="{% static 'mi-js.js'%}" defer></script>
+    <link rel='stylesheet' href="{% static 'css/shop.css'%}">
   </head>
 
   <body>
@@ -27,28 +33,29 @@
             <li>
               <div class='product sale'>
                 <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
-                  <img style='width:238px;' src='MyWebProject/my_shop/static/favicon.png'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" id="prodlogo">
                 </a>
               </div>
             </li>
             <li>
               <div class='product sale'>
                 <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
-                  <img style='width:238px;' src='MyWebProject/my_shop/static/favicon.png'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='product sale'>
+                <a href='https://www.sivasdescalzo.com/es/nike-react-element-
+                55-prm-ci3835-002'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
                 </a>
               </div>
             </li>
             <li>
               <div class='product sale'>
                 <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
-                  <img style='width:238px;' src='MyWebProject/my_shop/static/favicon.png'>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div class='product sale'>
-                <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
-                  <img style='width:238px;' src='MyWebProject/my_shop/static/favicon.png'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
                 </a>
               </div>
             </li>

@@ -1,0 +1,70 @@
+
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>MI TIENDA</title>
+    <script type="text/javascript" src="{% static 'mi-js.js'%}" defer></script>
+    <link rel='stylesheet' href="{% static 'css/shop.css'%}">
+  </head>
+
+  <body>
+
+    <div></div>
+    <div id='headdiv'>
+      <h1>My Shop</h1>
+    </div>
+    <div></div>
+    <div>
+      <div>
+        <div>intro... extra...
+          <div>h1</div>
+          <div>
+            <div>centrado con refs</div>
+          </div>
+          <div>filtrar</div>
+        </div>
+        <div id='products'>
+          <ul>
+            <li>
+              <div class='product sale'>
+                <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" id="prodlogo">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='product sale'>
+                <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='product sale'>
+                <a href='https://www.sivasdescalzo.com/es/nike-react-element-
+                55-prm-ci3835-002'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class='product sale'>
+                <a href='https://www.sivasdescalzo.com/es/nike-react-element-55-prm-ci3835-002'>
+                  <img style='width:238px;' src="{% static 'favicon.png'%}" alt="NOPE" id="prodlogo">
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+
+</html>

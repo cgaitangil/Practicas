@@ -5,28 +5,14 @@ from django.template.loader import get_template
 from django.shortcuts import render
 from random import randint
 
-# Create your views here.
-
-# -- Fichero mi_tienda/views.py
-from django.http import HttpResponse
-
-from my_shop.models import Producto
-
-# -- Vista principal de mi tienda
-# -- El nombre de la vista puede ser cualquiera. Nosotros lo hemos
-# -- llamado index, pero se podría haber llamado pepito
-# --def index(request):
-# --    return HttpResponse("Hola! esta es la página principal de Mi tienda!")
-
-from django.http import HttpResponse
-from django.shortcuts import render
-from random import randint
+from my_shop.models import Product
 
 # -- Vista principal de mi tienda
 # -- El nombre de la vista puede ser cualquiera. Nosotros lo hemos
 # -- llamado index, pero se podría haber llamado pepito
 def index(request):
-    return render(request, 'shop.html', {})
+    products = Product.objects.all()
+    return render(request, 'shop.html', {'product':products[0]})
 
 # -- Ejemplo de generacion a partir de cadenas con código html
 def test1(request):
@@ -115,7 +101,7 @@ def test5(request):
 
 # import Producto
 def list(request):
-    productos = Producto.objects.all()
+    productos = Product.objects.all()
     html = "<h2>Listado de articulos</h2>"
     for prod in productos:
         print(prod.nombre)
@@ -123,9 +109,18 @@ def list(request):
     return HttpResponse(html)
 
 # con plantilla -> render()
+def list1(request):
+    products = Product.objects.all()
+    return render(request, 'prod.html', {'product':products[0]})
 def list2(request):
-    productos = Producto.objects.all()
-    return render(request, 'listado.html', {'productos':productos})
+    products = Product.objects.all()
+    return render(request, 'listado.html', {'product':products[1]})
+def list3(request):
+    products = Product.objects.all()
+    return render(request, 'listado.html', {'product':products[2]})
+def list4(request):
+    products = Product.objects.all()
+    return render(request, 'listado.html', {'product':products[3]})
 
 def formulario(request):
     return render(request, 'formulario.html', {})

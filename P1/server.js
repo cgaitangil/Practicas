@@ -43,9 +43,8 @@ http.createServer( (req, res) => {
   //-- de lo que devolvemos
 
   var filename = q.pathname.slice(1)
-  console.log(filename)
+  console.log('----->' + filename)
   fs.readFile(filename, 'utf-8', (err, data) => {
-
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/html'});
       return res.end("404 Not Found");
@@ -53,20 +52,26 @@ http.createServer( (req, res) => {
       var req_mime = filename.slice(filename.lastIndexOf(".")+1);
       console.log(req_mime);
       if (req_mime == "html") {
-        console.log('html btch');
+        console.log('es  html');
         res.writeHead(200, {'Content-Type': "text/html"});
         res.write(data);
         res.end();
       }
       else if (req_mime == 'png') {
-        console.log('es img btch');
+        console.log('es img png');
         res.writeHead(200, {'Content-Type': "image/png"});
         res.end(data, 'binary');
       }
       else if (req_mime == 'jpg') {
-        console.log('es img jpg btch');
+        console.log('es img jpg');
         res.writeHead(200, {'Content-Type': "image/jpg"});
         res.end(data, 'binary');
+      }
+      else if (req_mime == 'css') {
+        console.log('es css');
+        res.writeHead(200, {'Content-Type': "text/css"});
+        res.write(data);
+        res.end();
       }
     }
   });

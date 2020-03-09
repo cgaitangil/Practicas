@@ -3,9 +3,6 @@ from django.urls import path
 # -- Importar todas las vistas de mi_tienda
 from . import views
 
-# -- Aquí se definen las URLs de nuestra tienda
-# -- Metemos de momento sólo la principal (índice)
-
 urlpatterns = [
     # -- Vista pricipal (índice)
     path('', views.index, name='index'),
@@ -22,6 +19,12 @@ urlpatterns = [
     path('formulario/', views.formulario, name='formulario'),
     path('recepcion/', views.recepcion, name='recepcion'),
 
-
-
+    #--------------------------------------------------
+    #--------------------------------------------------
+    # PREGUNTA EXAMEN
+    # /descuento que pide usuario con cookie
+    # y te hace dexceunto de todos los productos o uno
+    # path('descuento/', views.descuento, name='descuento'),
+    #--------------------------------------------------
+    #--------------------------------------------------
 ]

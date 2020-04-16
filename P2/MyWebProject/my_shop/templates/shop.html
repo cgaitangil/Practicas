@@ -35,7 +35,7 @@
             <li>
               <div class='product sale'>
                 <div style='margin:1px;background:#070720;'>
-                  <p align="left">{{ product.name }}</p>
+                  <p align="left">{{ products.first.name }}</p>
                   <a href='list1/'>
                     <img style='width:150px;' src="{% static 'prod1_1.png'%}" id="prodlogo">
                   </a>
@@ -76,6 +76,26 @@
         </div>
       </div>
     </div>
+
+    <form method="get" action="/my_shop/formulario">
+      <button type="submit">Buy</button>
+    </form>
+    <p> ---------Databases:</p>
+    <p>Products</p>
+    <ul>
+      {% for prod in products %}
+          <li>-Name: {{ prod.name }} --> Precio: {{prod.price}} | Stock: {{prod.stock}}</li></br>
+      {% endfor %}
+    </ul>
+    <p>Orders</p>
+    <ul>
+      {% for ord in orders %}
+          <li>-Buyer: {{ ord.buyer }} | Product: {{ord.product}}</li></br>
+      {% endfor %}
+    </ul>
+
+    </br>{{products.first.price}}
+
 
   </body>
 

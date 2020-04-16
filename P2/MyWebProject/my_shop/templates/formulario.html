@@ -7,10 +7,18 @@
   <body>
     <h1>Formulario de Pedido</h1>
     <form  action="/my_shop/recepcion/" method="post">
-      {% csrf_token %}
+      {% csrf_token %} <!-- avoid CRSF attacks -->
       <label>Nombre de la persona que hace el pedido: <label>
-      <input type="text" name="nombre" value="Anonimo" />
-      <input type="submit" value="OK" />
+      <input type="text" name="nombre"/>
+      </br>
+      <label>Producto a comprar: <label>
+      <select name="product">
+        {% for prod in products %}
+          <option value='{{ prod.name }}'>{{ prod.name }}</option>
+        {% endfor %}
+      </select>
+      </br></br>
+      <input type="submit" value="OK"/>
     </form>
   </body>
 </html>

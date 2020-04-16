@@ -6,13 +6,16 @@ from django.shortcuts import render
 from random import randint
 
 from my_shop.models import Product
+from my_shop.models import Order
 
 # -- Vista principal de mi tienda
 # -- El nombre de la vista puede ser cualquiera. Nosotros lo hemos
 # -- llamado index, pero se podría haber llamado pepito
 def index(request):
     products = Product.objects.all()
-    return render(request, 'shop.html', {'product':products[0]})
+    orders = Order.objects.all()
+    return render(request, 'shop.html', {'products':products,
+                                         'orders':orders})
 
 # -- Ejemplo de generacion a partir de cadenas con código html
 def test1(request):
@@ -123,11 +126,23 @@ def list4(request):
     return render(request, 'listado.html', {'product':products[3]})
 
 def formulario(request):
-    return render(request, 'formulario.html', {})
+    products = Product.objects.all()
+    return render(request, 'formulario.html', {'products':products})
 
 def recepcion(request):
     # -- Obtener el nombre de la persona
     persona = request.POST['nombre']
+    prod = request.POST['product']
+    # Saving in database
+    order = Order(buyer=persona, product=prod)
+    order.save()
     # -- Imprimirlo en la consola del servidor
     print(f" PEDIDO RECIBIDO!!! ----> {persona}")
-    return HttpResponse("Datos recibidos!!. Comprador: " + request.POST['nombre'])
+    html = "<h2>Datos recibidos!!. Comprador: " + request.POST['nombre'] + "</h2>"
+    html += """
+        <form method="get" action="/my_shop">
+            <button type="submit">Página principal</button>
+        </form>
+    """
+    return HttpResponse(html)
+    # return render(request, 'recepcion.html', {persona})

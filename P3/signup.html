@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SiVasSinTetera</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel='stylesheet' href="form.css">
+  </head>
+  <body>
+    <h1>Regístrese</h1>
+    <form  action="/signupreceiver" method="post">
+      <!-- {% csrf_token %}  avoid CRSF attacks -->
+      <label>Nombre de usuario: <label>
+      <input type="text" name="name" placeholder="pepe26" value=''/>
+      </br>
+      <label>Introduzca una contraseña: <label>
+      <input type="text" name="password" value=''/>
+      </br>
+      </br>
+      <input type="submit" value="OK"/>
+    </form>
+  </body>
+</html>

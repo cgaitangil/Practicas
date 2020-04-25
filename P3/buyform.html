@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SiVasSinTetera</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel='stylesheet' href="form.css">
+  </head>
+  <body>
+    <h1>Confirmación de compra</h1>
+    <form  action="/buyreceiver" method="post">
+      <!-- {% csrf_token %}  avoid CRSF attacks -->
+      <label>Nombre: <label>
+      <input type="text" name="name" value=''/>
+      </br>
+      <label>Apellidos: <label>
+      <input type="text" name="secondname" value=''/>
+      </br>
+      <label>Correo electrónico: <label>
+      <input type="text" name="email" value=''/>
+      </br>
+      <label>Método de pago: <label>
+      <select name="paymethod">
+        <option value="volvo">Paypal</option>
+        <option value="saab">Tarjeta de cŕedito</option>
+        <option value="fiat">Transferencia bancaria</option>
+      </select>
+      </br>
+      </br>
+      <input type="submit" value="COMPRAR"/>
+    </form>
+  </body>
+</html>

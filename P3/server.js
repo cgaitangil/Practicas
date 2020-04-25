@@ -244,7 +244,6 @@ http.createServer( (req, res) => {
       var prodToSend = [];
       for (var i=0; i<products.length; i++) {
         const p = products[i];
-        console.log(p.match(txt, '/gi'));
         if (  ( !(products[i].toUpperCase().indexOf(txt)<0) ) ||
               ( !(products[i].toLowerCase().indexOf(txt)<0) ) ){
           prodToSend.push(products[i]);

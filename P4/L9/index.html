@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MiChat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js" defer></script>
+    <link rel='stylesheet' href="client.css">
+    <link rel="icon" type="image/png" href="favicon2.png">
+    <!--link rel='stylesheet' href="shop.css"-->
+  </head>
+  <body>
+
+    <div id='headdiv'>
+      <h1>MiChat</h1>
+    </div>
+
+    <div id='bigdiv'>
+
+      <div align='center' class='littlediv'>
+        </br>
+        <input id="msg" autocomplete="off" placeholder="Escribe algo..."/>
+        </br>
+        <button align='center' type="button" id="send">ENVÍAR</button>
+        </br>
+      </div>
+
+      <div class='littlediv'>
+        </br>
+        <h3 align='center'>Mensajes:</h3>
+        </br>
+        <p align='right' id="display"></p>
+        <br>
+      </div>
+
+    </div>
+
+  </body>
+</html>

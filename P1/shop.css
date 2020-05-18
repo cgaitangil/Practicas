@@ -1,39 +1,37 @@
+
 .list li>.product {
   min-height: 282px;
 }
+
 .product .sale {
   position: relative;
 }
+
 .list .product {
   display: block;
 }
+
 .product {
   position: relative;
   display: block;
-
 }
 
 body {
   background-color:#070720;
   color: white;
   font-family: Helvetica Neue,Roboto,Arial,Sans-Serif!important;
-
 }
 
 h1 {
   font-size: 50px;
 }
+
 dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
   margin: 0;
   padding: 0;
   direction: ltr;
 }
-* {
-  *behavior: url(/js/boxsizing.htc);
-}
-*, *:before, *:after {
-  box-sizing: border-box;
-}
+
 div {
   display: block;
   margin: 0;
@@ -57,9 +55,11 @@ li a {
 .products-list {
   font-size: 1em;
 }
+
 p, ul, label {
   letter-spacing: 1px;
 }
+
 ul, ol, dl {
   font-size: .6875em;
   line-height: 1.6;
@@ -75,6 +75,11 @@ ul {
   list-style-type: none;
 }
 
+img {
+  width: 170px;
+  height: 180px;
+}
+
 #headdiv {
   /* CONTENT AT CENTER */
   display: -webkit-box;
@@ -88,7 +93,7 @@ ul {
   justify-content: center;
   /* -------------------- */
   top: 0%;
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 80px;
   color: #4f516e;
@@ -98,8 +103,8 @@ ul {
 
 #products {
   margin: 90px auto 0;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 30.5%;
+  margin-right: 30.5%;
   background-color: #31334a;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -107,6 +112,6 @@ ul {
   box-pack: center;
   flex: center;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 }

@@ -1,7 +1,8 @@
 # Práctica 3
 
 # 3.1
-	Buscar: [IP]:8080/SiVasSinTetera
+	Servidor: > node server.js
+	Client:   localhost(ServerIP):8080/SiVasSinTetera
 	
 		Aparecerá la tienda de teteras/cafeteras SiVasSinTetera. 
 		

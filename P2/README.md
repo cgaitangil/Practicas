@@ -20,7 +20,7 @@
 		- El cliente debe poder rellenar un formulario para relizar un pedido concreto,
 		que se recibe en el servidor y se inserta en la base de datos:
 			Al hacer 'click' sobre el botón comprar, nos reedirige al formulario
-			de compra, en el cuál podremos insertar nuestro nombre y escoger el 
+			de compra, en el que podremos insertar nuestro nombre y escoger el 
 			producto a comprar, indicándonos posteriormente si la compra
 			se ha realizado con éxito o no, debido a la falta de stock (vista
 			recepción, que recoge los datos introducidos en el formulario).

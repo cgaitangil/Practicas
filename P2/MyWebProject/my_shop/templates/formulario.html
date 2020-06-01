@@ -1,24 +1,33 @@
+
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>Formulario</title>
+    <link rel="icon" type="image/png" href="{% static 'favicon.png'%}">
+    <link rel='stylesheet' href="{% static 'css/shop.css'%}">
   </head>
+
   <body>
-    <h1>Formulario de Pedido</h1>
+    <h1>&nbsp;Realizar compra</h1>
+    <br>
     <form  action="/my_shop/recepcion/" method="post">
       {% csrf_token %} <!-- avoid CRSF attacks -->
-      <label>Nombre de la persona que hace el pedido: <label>
+      <label>&nbsp; Nombre de la persona que hace el pedido: <label>
       <input type="text" name="nombre"/>
-      </br>
-      <label>Producto a comprar: <label>
+      <br>
+      <label>&nbsp;&nbsp;Producto a comprar: <label>
       <select name="product">
         {% for prod in products %}
-          <option value='{{ prod.name }}'>{{ prod.name }}</option>
+          <option value='{{ prod }}'>{{ prod.name }}</option>
         {% endfor %}
       </select>
-      </br></br>
-      <input type="submit" value="OK"/>
+      <br><br>&nbsp;
+      <input type="submit" value="CONFIRMAR"/>
     </form>
   </body>
+  
 </html>

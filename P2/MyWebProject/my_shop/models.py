@@ -1,27 +1,19 @@
+
 from django.db import models
 
 class Product(models.Model):
-    """Modelo de datos de mis productos"""
-
-    # -- django.models.com
+    """My products model"""
     name = models.CharField(max_length=50)
     stock = models.IntegerField(default=0)
     price = models.FloatField()
-    #filename = models.CharField(max_length=50)
-
-    # -- Usamos el nombre para identificar
-    # -- el producto
+    # Identifying product by name
     def __str__(self):
         return self.name
 
 class Order(models.Model):
-    """Modelo de datos de mis pedidos"""
-
-    # -- django.models.com
+    """Orders model"""
     buyer = models.CharField(max_length=50)
     product = models.CharField(max_length=50)
-
-    # -- Usamos el nombre del comprador para identificar
-    # -- el pedido
+    # Identifying product by name
     def __str__(self):
         return self.buyer

@@ -8,141 +8,53 @@ from random import randint
 from my_shop.models import Product
 from my_shop.models import Order
 
-# -- Vista principal de mi tienda
-# -- El nombre de la vista puede ser cualquiera. Nosotros lo hemos
-# -- llamado index, pero se podría haber llamado pepito
 def index(request):
     products = Product.objects.all()
     orders = Order.objects.all()
     return render(request, 'shop.html', {'products':products,
                                          'orders':orders})
-
-# -- Ejemplo de generacion a partir de cadenas con código html
-def test1(request):
-
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-
-    # Párrafo a insertar
-    P = "<p>Numero aleatorio: " + str(numero) + " </p>"
-
-    PAGINA_INI = """
-    <!DOCTYPE html>
-    <html lang="es" dir="ltr">
-      <head>
-        <meta charset="utf-8">
-        <title>Test1</title>
-      </head>
-      <body>
-        <h1>TEST1</h1>
-    """
-
-    PAGINA_FIN = """
-      </body>
-    </html>
-    """
-    return HttpResponse(PAGINA_INI + P + PAGINA_FIN)
-
-    # -- Ejemplo de generacion mediante una plantilla en el código
-def test2(request):
-
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-
-    PLANTILLA = """
-    <!DOCTYPE html>
-    <html lang="es" dir="ltr">
-      <head>
-        <meta charset="utf-8">
-        <title>Test2</title>
-      </head>
-      <body>
-        <h1>TEST2</h1>
-        <p> Numero aleatorio:  {{numero}} </p>
-      </body>
-    </html>
-    """
-
-    # --Procesar la plantilla
-    t = Template(PLANTILLA)
-
-    # -- Crear el contexto: Asignar el numero
-    c = Context({'numero': str(numero)})
-
-    # -- Obtener la pagina html final
-    html = t.render(c)
-
-    return HttpResponse(html)
-
-    # -- Ejemplo de generacion mediante una plantilla en FICHERO
-def test3(request):
-
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-
-    # -- Leer la plantilla del fichero
-    t = get_template('test.html')
-
-    # -- Crear el contexto: Asignar el numero
-    c = {'numero': str(numero)}
-
-    # -- Obtener la pagina html final
-    html = t.render(c)
-
-    return HttpResponse(html)
-
-    # -- Ejemplo de uso de la función Render
-def test4(request):
-    # -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'test.html', {'numero':str(numero)})
-
-def test5(request):
-# -- Obtener el número aleatorio
-    numero = randint(0, 100)
-    return render(request, 'test5.html', {'numero':str(numero)})
-
-# import Producto
-def list(request):
-    productos = Product.objects.all()
-    html = "<h2>Listado de articulos</h2>"
-    for prod in productos:
-        print(prod.nombre)
-        html += '<p>'+ prod.nombre + ' ' + str(prod.precio) + '<p>'
-    return HttpResponse(html)
-
-# con plantilla -> render()
-def list1(request):
+def prod1(request):
     products = Product.objects.all()
     return render(request, 'prod.html', {'product':products[0]})
-def list2(request):
+def prod2(request):
     products = Product.objects.all()
-    return render(request, 'listado.html', {'product':products[1]})
-def list3(request):
+    return render(request, 'prod.html', {'product':products[1]})
+def prod3(request):
     products = Product.objects.all()
-    return render(request, 'listado.html', {'product':products[2]})
-def list4(request):
+    return render(request, 'prod.html', {'product':products[2]})
+def prod4(request):
     products = Product.objects.all()
-    return render(request, 'listado.html', {'product':products[3]})
+    return render(request, 'prod.html', {'product':products[3]})
 
 def formulario(request):
-    products = Product.objects.all()
-    return render(request, 'formulario.html', {'products':products})
+    return render(request, 'formulario.html',
+                  {'products':Product.objects.all()})
 
 def recepcion(request):
-    # -- Obtener el nombre de la persona
-    persona = request.POST['nombre']
+    person = request.POST['nombre']
     prod = request.POST['product']
-    # Saving in database
-    order = Order(buyer=persona, product=prod)
-    order.save()
-    # -- Imprimirlo en la consola del servidor
-    print(f" PEDIDO RECIBIDO!!! ----> {persona}")
-    html = "<h2>Datos recibidos!!. Comprador: " + request.POST['nombre'] + "</h2>"
-    html += """
-        <form method="get" action="/my_shop">
-            <button type="submit">Página principal</button>
-        </form>
-    """
-    return HttpResponse(html)
-    # return render(request, 'recepcion.html', {persona})
+    products = Product.objects.all()
+    # checking index of element for checking stock
+    if prod == 'Tetera VIER':
+        index = 0
+    if prod == 'Tetera IBILI HANOI':
+        index = 1
+    if prod == 'Tetera FULOON':
+        index = 2
+    if prod == 'Tetera PLUIESO':
+        index = 3
+    if products[index].stock == 0:
+        available_el = False
+    else:
+        available_el = True
+        # -1 stock in that product if its not 0
+        element = Product.objects.get(name = prod)
+        element.stock = element.stock - 1
+        element.save()
+        # Saving in database
+        order = Order(buyer=person, product=prod)
+        order.save()
+        # Pinting in server console
+        print(f" Order received!!! ----> Who? : {person} | What? : {prod}" )
+    # returning html as response
+    return render(request, 'recepcion.html', {'available':available_el})

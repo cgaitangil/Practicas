@@ -1,14 +1,36 @@
+
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>Formulario</title>
+    <link rel="icon" type="image/png" href="{% static 'favicon.png'%}">
+    <link rel='stylesheet' href="{% static 'css/shop.css'%}">
   </head>
+
   <body>
-    <h1>Información de Pedido</h1>
-    <p>Datos recibidos!!. Comprador: " + {{ product.name }}</p>
+    <br>
+    <h2>
+      {% if available %}
+        Compra realizada con éxito!
+      {% else %}
+        Este producto no se encuentra disponible actualmente.
+      {% endif %}
+    </h2>
+    <br>
     <form method="get" action="/my_shop/">
-      <button type="submit">Página principal</button>
+      <button style='background-color: #7f85ba;
+                     border-radius: 4px;
+                     color:#070720;
+                     border-radius: 2px;
+                     font-size: 20px;
+                     padding: 2px 7px;
+                     height: 32px;'
+              type="submit">Página principal</button>
     </form>
   </body>
+  
 </html>

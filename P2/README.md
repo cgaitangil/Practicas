@@ -1,7 +1,7 @@
 # Práctica 2
 
 		Servidor (terminal): 'python3 manage.py runserver'
-		Cliente (navegador): 'http://localhost:8000/my_shop/'
+		Cliente (navegador): 'localhost(ServerIP):8000/my_shop/'
 
 		- Al menos 3 productos diferentes:
 			- Tetera VIER

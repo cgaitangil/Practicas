@@ -1,5 +1,7 @@
 # Práctica 1
 
+	Servidor: > node server.js
+	Cliente:  localhost(ServerIP):8080/shop.html
 		- Módulo http de Node.js en 'server.js'.
 
 		- Documentos HTML:
